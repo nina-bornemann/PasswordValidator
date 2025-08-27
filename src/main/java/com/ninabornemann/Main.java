@@ -56,5 +56,16 @@ public class Main {
 
     // Optionale Gesamtsicht:
     // nutzt die obenstehenden Checks
-
+    public static boolean isValid(String password) {
+        if (!hasMinLength(password, 8)) {
+            return false;
+        } else if (!containsDigit(password)) {
+            return false;
+        } else if (!containsUpperAndLower(password)) {
+            return false;
+        } else if (isCommonPassword(password)) {
+            return false;
+        }
+        return true;
+    }
 }

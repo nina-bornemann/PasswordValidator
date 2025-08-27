@@ -122,6 +122,54 @@ class MainTest {
     */
 
     //check isValid on all functions
+    @Test
+    void isValid_returnsFalse_when7chars() {
+        String pw = "AllGood";
+        assertFalse(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsFalse_whenNoDigits_butCorrectLength() {
+        String pw = "AllGoodA";
+        assertFalse(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsFalse_whenDigits_butNoUpperCase() {
+        String pw = "allgood5";
+        assertFalse(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsFalse_whenOnlyDigits() {
+        String pw = "123409764";
+        assertFalse(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsTrue_whenDigitsAndUpperLower() {
+        String pw = "AllGood5";
+        assertTrue(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsFalse_whenCommonPw() {
+        String pw = "P4ssW0rd";
+        assertFalse(Main.isValid(pw));
+    }
+    @Test
+    void isValid_returnsTrue_whenAllCriteria() {
+        String pw = "All4Good";
+        assertTrue(Main.isValid(pw));
+    }
+    @Test
+    void isValid_shouldReturnTrue_AlexGuess() {
+        assertTrue(Main.isValid("aL4xcakE"));
+    }
 
+    @Test
+    void isValid_shouldReturnFalse_AlexGuess() {
+        assertFalse(Main.isValid("\0aa"));
+    }
+
+    @Test
+    void isValid_shouldReturnFalse_AlexNull() {
+        assertThrows(IllegalArgumentException.class, () -> Main.isValid(null));
+    }
 
 }
