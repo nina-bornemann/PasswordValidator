@@ -9,7 +9,6 @@ ___
 - Uppercase and lowercase letters
 - not on the list of common/weak passwords
 - at least one special character
-- maximum of 3 special characters
 ---
 
 

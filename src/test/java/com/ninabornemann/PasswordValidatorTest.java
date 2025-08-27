@@ -110,14 +110,19 @@ class PasswordValidatorTest {
         assertFalse(PasswordValidator.isCommonPassword(password));
     }
 
-    /*tests if password contains special characters
+    //tests if password contains special characters
     @Test
     void hasSpecialCharacter_returnsTrue_whenContains() {
         String password = "A456B789#";
-        String allowed = "";
+        String allowed = "#!§$%&?+^/{}€*_-";
         assertTrue(PasswordValidator.containsSpecialChar(password, allowed));
     }
-    */
+    @Test
+    void hasSpecialCharacter_returnsFalse_whenDoesntContains() {
+        String password = "A456B7897";
+        String allowed = "#!§$%&?+^/{}€*_-";
+        assertFalse(PasswordValidator.containsSpecialChar(password, allowed));
+    }
 
     //check isValid on all functions
     @Test
@@ -136,13 +141,17 @@ class PasswordValidatorTest {
         assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
+    void isValid_returnsTrue_whenDigits_butNoLowerCase() {
+        assertFalse(PasswordValidator.containsUpperAndLower("ALL4GOOD"));
+    }
+    @Test
     void isValid_returnsFalse_whenOnlyDigits() {
         String pw = "123409764";
         assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsTrue_whenDigitsAndUpperLower() {
-        String pw = "AllGood5";
+        String pw = "AllGood5#";
         assertTrue(PasswordValidator.isValid(pw));
     }
     @Test
@@ -152,19 +161,17 @@ class PasswordValidatorTest {
     }
     @Test
     void isValid_returnsTrue_whenAllCriteria() {
-        String pw = "All4Good";
+        String pw = "All4Good#";
         assertTrue(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_shouldReturnTrue_AlexGuess() {
-        assertTrue(PasswordValidator.isValid("aL4xcakE"));
+        assertTrue(PasswordValidator.isValid("#aL4xcakE<3"));
     }
-
     @Test
     void isValid_shouldReturnFalse_AlexGuess() {
         assertFalse(PasswordValidator.isValid("\0aa"));
     }
-
     @Test
     void isValid_shouldReturnFalse_AlexNull() {
         assertThrows(IllegalArgumentException.class, () -> PasswordValidator.isValid(null));

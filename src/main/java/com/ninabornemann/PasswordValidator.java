@@ -1,5 +1,6 @@
 package com.ninabornemann;
 
+import java.util.List;
 import java.util.Locale;
 
 public class PasswordValidator {
@@ -41,11 +42,18 @@ public class PasswordValidator {
         return false;
     }
 
-    /* Bonus:
+    //Bonus: Special characters
     public static boolean containsSpecialChar(String password, String allowed) {
-        return true;
+
+        for (char cp : password.toCharArray()) {
+            for (char ca : allowed.toCharArray()) {
+                if (ca == cp) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
-    */
 
     // Optionale Gesamtsicht:
     // nutzt die obenstehenden Checks
@@ -57,6 +65,8 @@ public class PasswordValidator {
         } else if (!containsUpperAndLower(password)) {
             return false;
         } else if (isCommonPassword(password)) {
+            return false;
+        } else if (!containsSpecialChar(password, "#!§$%&?+^/{}€*_-<>=")) {
             return false;
         }
         return true;
