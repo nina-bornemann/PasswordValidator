@@ -1,4 +1,4 @@
-#Password Criteria:
+# Password Criteria:
 
 - min. 8 characters,
 - min. one digit (0–9),
