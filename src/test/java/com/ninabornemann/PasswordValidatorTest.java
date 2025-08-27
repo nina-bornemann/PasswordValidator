@@ -1,17 +1,15 @@
 package com.ninabornemann;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class MainTest {
+class PasswordValidatorTest {
     // tests for the minimal length
     @Test
     void hasMinLen_returnsFalse_when7() {
         int min = 8;
         String password = "Abc1def";
         boolean expected = false;
-        boolean actual = Main.hasMinLength(password, min);
+        boolean actual = PasswordValidator.hasMinLength(password, min);
         assertEquals(expected, actual);
     }
     @Test
@@ -19,7 +17,7 @@ class MainTest {
         int min = 8;
         String password = "Abc1def2g";
         boolean expected = true;
-        boolean actual = Main.hasMinLength(password, min);
+        boolean actual = PasswordValidator.hasMinLength(password, min);
         assertEquals(expected, actual);
     }
     @Test
@@ -27,20 +25,20 @@ class MainTest {
         int min = 8;
         String password = "Abc1defg";
         boolean expected = true;
-        boolean actual = Main.hasMinLength(password, min);
+        boolean actual = PasswordValidator.hasMinLength(password, min);
         assertEquals(expected, actual);
     }
     @Test
     void hasMinLen_throwsExeption_whenNull() {
         int min = 8;
         String password = null;
-        assertThrows(IllegalArgumentException.class, () -> Main.hasMinLength(password, min));
+        assertThrows(IllegalArgumentException.class, () -> PasswordValidator.hasMinLength(password, min));
     }
     @Test
     void hasMinLen_throwsExeption_whenEmptyString() {
         int min = 8;
         String password = "";
-        assertThrows(IllegalArgumentException.class, () -> Main.hasMinLength(password, min));
+        assertThrows(IllegalArgumentException.class, () -> PasswordValidator.hasMinLength(password, min));
     }
 
     // tests if password contains digits
@@ -48,21 +46,21 @@ class MainTest {
     void isDigit_returnsFalse_whenabc() {
         String password = "abc";
         boolean expected = false;
-        boolean actual = Main.containsDigit(password);
+        boolean actual = PasswordValidator.containsDigit(password);
         assertEquals(expected, actual);
     }
     @Test
     void isDigit_returnsTrue_whena1bc() {
         String password = "a1bc";
         boolean expected = true;
-        boolean actual = Main.containsDigit(password);
+        boolean actual = PasswordValidator.containsDigit(password);
         assertEquals(expected, actual);
     }
     @Test
     void isDigit_returnsTrue_whena1b2c3() {
         String password = "a1b2c3";
         boolean expected = true;
-        boolean actual = Main.containsDigit(password);
+        boolean actual = PasswordValidator.containsDigit(password);
         assertEquals(expected, actual);
     }
 
@@ -71,45 +69,45 @@ class MainTest {
     void hasUpperandLower_returnsFalse_whenOnlyUpper() {
         String password = "PASSWORT";
         boolean expected = false;
-        boolean actual = Main.containsUpperAndLower(password);
+        boolean actual = PasswordValidator.containsUpperAndLower(password);
         assertEquals(expected, actual);
     }
     @Test
     void hasUpperandLower_returnsFalse_whenOnlyLower() {
         String password = "password";
         boolean expected = false;
-        boolean actual = Main.containsUpperAndLower(password);
+        boolean actual = PasswordValidator.containsUpperAndLower(password);
         assertEquals(expected, actual);
     }
     @Test
     void hasUpperandLower_returnsTrue_whenMixed() {
         String password = "PassWord";
         boolean expected = true;
-        boolean actual = Main.containsUpperAndLower(password);
+        boolean actual = PasswordValidator.containsUpperAndLower(password);
         assertEquals(expected, actual);
     }
     @Test
     void hasUpperandLower_returnsFalse_whenOnlyOneLetter() {
         String password = "p";
-        assertFalse(Main.containsUpperAndLower(password));
+        assertFalse(PasswordValidator.containsUpperAndLower(password));
     }
 
     //tests if password is one of common passwords
     @Test
     void commonPassword_returnTrue_whenOneOfThem1() {
         String password = "password";
-        assertTrue(Main.isCommonPassword(password));
+        assertTrue(PasswordValidator.isCommonPassword(password));
     }
     @Test
     void commonPassword_returnsTrue_whenOneOfThem2() {
         String password = "P4ssw0rd";
-        assertTrue(Main.containsUpperAndLower(password));
+        assertTrue(PasswordValidator.containsUpperAndLower(password));
 
     }
     @Test
     void commonPassword_returnsFalse_whenNotCommon() {
         String password = "2DB3101B4BDB";
-        assertFalse(Main.isCommonPassword(password));
+        assertFalse(PasswordValidator.isCommonPassword(password));
     }
 
     /*tests if password contains special characters
@@ -117,7 +115,7 @@ class MainTest {
     void hasSpecialCharacter_returnsTrue_whenContains() {
         String password = "A456B789#";
         String allowed = "";
-        assertTrue(Main.containsSpecialChar(password, allowed));
+        assertTrue(PasswordValidator.containsSpecialChar(password, allowed));
     }
     */
 
@@ -125,51 +123,51 @@ class MainTest {
     @Test
     void isValid_returnsFalse_when7chars() {
         String pw = "AllGood";
-        assertFalse(Main.isValid(pw));
+        assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsFalse_whenNoDigits_butCorrectLength() {
         String pw = "AllGoodA";
-        assertFalse(Main.isValid(pw));
+        assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsFalse_whenDigits_butNoUpperCase() {
         String pw = "allgood5";
-        assertFalse(Main.isValid(pw));
+        assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsFalse_whenOnlyDigits() {
         String pw = "123409764";
-        assertFalse(Main.isValid(pw));
+        assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsTrue_whenDigitsAndUpperLower() {
         String pw = "AllGood5";
-        assertTrue(Main.isValid(pw));
+        assertTrue(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsFalse_whenCommonPw() {
         String pw = "P4ssW0rd";
-        assertFalse(Main.isValid(pw));
+        assertFalse(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_returnsTrue_whenAllCriteria() {
         String pw = "All4Good";
-        assertTrue(Main.isValid(pw));
+        assertTrue(PasswordValidator.isValid(pw));
     }
     @Test
     void isValid_shouldReturnTrue_AlexGuess() {
-        assertTrue(Main.isValid("aL4xcakE"));
+        assertTrue(PasswordValidator.isValid("aL4xcakE"));
     }
 
     @Test
     void isValid_shouldReturnFalse_AlexGuess() {
-        assertFalse(Main.isValid("\0aa"));
+        assertFalse(PasswordValidator.isValid("\0aa"));
     }
 
     @Test
     void isValid_shouldReturnFalse_AlexNull() {
-        assertThrows(IllegalArgumentException.class, () -> Main.isValid(null));
+        assertThrows(IllegalArgumentException.class, () -> PasswordValidator.isValid(null));
     }
 
 }
