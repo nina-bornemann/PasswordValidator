@@ -1,14 +1,20 @@
 [![Java CI with Maven](https://github.com/nina-bornemann/PasswordValidator/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/nina-bornemann/PasswordValidator/actions/workflows/maven.yml)
 
-## Description
+## 💥 Description
 This is a simple tool to check if a choosen password is valid, depending on the given criteria.
 ___
-### Password Criteria:
+### 🔐 Password Criteria:
 - min. 8 characters,
 - min. one digit (0–9),
 - Uppercase and lowercase letters
 - not on the list of common/weak passwords
+
+### ✨ Bonus Tasks:
 - at least one special character
+- Password Generator
+- Parameterized tests
+- (Invalid Input message instead of boolean)
+- (CLI tool)
 ---
 
 
