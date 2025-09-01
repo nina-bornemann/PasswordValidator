@@ -12,9 +12,9 @@ ___
 ### ✨ Bonus Tasks:
 - at least one special character
 - Password Generator
-- Parameterized tests
-- (Invalid Input message instead of boolean)
-- (CLI tool)
+- (Parameterized tests)
+- Invalid Input message instead of boolean
+- CLI tool to check your input password
 ---
 
 
