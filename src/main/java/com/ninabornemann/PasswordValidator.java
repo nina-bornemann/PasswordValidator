@@ -59,16 +59,22 @@ public class PasswordValidator {
     // nutzt die obenstehenden Checks
     public static boolean isValid(String password) {
         if (!hasMinLength(password, 8)) {
+            System.out.println("Your password is too short. You need at least 8 characters.");
             return false;
         } else if (!containsDigit(password)) {
+            System.out.println("Your password needs at least one digit.");
             return false;
         } else if (!containsUpperAndLower(password)) {
+            System.out.println("You need both upper and lower case characters.");
             return false;
         } else if (isCommonPassword(password)) {
+            System.out.println("please choose a safer or less common passoword.");
             return false;
         } else if (!containsSpecialChar(password, "#!§$%&?+^/{}€*_-<>=")) {
+            System.out.println("You need at least one special character.");
             return false;
         }
+        System.out.println("Perfect! Your password is valid");
         return true;
     }
 }

@@ -59,6 +59,4 @@ public class PasswordGenerator {
         return String.valueOf(c);
     }
 
-
-
 }
